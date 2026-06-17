@@ -37,10 +37,4 @@ python notebooks/03_ml_segmentation_prediction.py
 streamlit run app/streamlit_app.py
 ```
 
-## Resume Bullets
 
-- Built a SQL, Python, dashboarding, and GenAI-based analytics platform to evaluate campaign performance, acquisition efficiency, and customer quality.
-- Engineered KPIs including CTR, CPC, CPA, ROAS, conversion rate, funnel drop-off, and customer acquisition cost across campaign, keyword, channel, device, and audience segments.
-- Applied K-Means clustering and Random Forest models to segment campaigns and predict conversion probability.
-- Designed measurement workflows to compare campaign performance and guide budget reallocation.
-- Added a GenAI assistant design using LangChain, FAISS, and Gemini/OpenAI APIs to generate source-backed campaign insights and recommendations.
