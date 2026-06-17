@@ -1,0 +1,40 @@
+# Campaign Insights Report
+
+## Executive Summary
+
+- Total spend: ₹9,845,039
+- Total revenue: ₹169,445,411
+- Overall ROAS: 17.21
+- Overall CPA: ₹864
+- Overall conversion rate: 2.55%
+
+## Best Audience Segments by ROAS
+
+- Premium Customers: ROAS 29.54, CPA ₹739, Avg quality 87.3
+- Small Business Owners: ROAS 24.84, CPA ₹728, Avg quality 81.5
+- Frequent Travelers: ROAS 20.50, CPA ₹784, Avg quality 78.9
+
+## Best Channels by ROAS
+
+- Display: ROAS 24.43, CPA ₹616
+- YouTube: ROAS 22.61, CPA ₹648
+- Affiliate: ROAS 21.69, CPA ₹667
+
+## High Spend / Low ROAS Campaigns to Optimize
+
+- Cashback Search Campaign: Spend ₹1634808, ROAS 15.45, CPA ₹946
+
+## Keywords to Review
+
+- business credit card: Spend ₹1426418, ROAS 15.70, CPA ₹921
+- travel rewards card: Spend ₹1370313, ROAS 16.04, CPA ₹910
+- credit card for business: Spend ₹1354420, ROAS 16.53, CPA ₹908
+- premium credit card: Spend ₹1301293, ROAS 16.45, CPA ₹901
+
+## Recommendations
+
+- Shift budget from high-spend/low-ROAS campaigns to high-ROAS audience segments.
+- Review landing page journey for keywords with good CTR but weak conversion.
+- Increase bids selectively for high-intent keywords with strong conversion probability.
+- Reduce spend on channels with high CPA and low customer quality score.
+- Use GenAI assistant to generate weekly campaign optimization summaries.

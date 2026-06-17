@@ -1,0 +1,17 @@
+# Conversion Prediction Model Report
+
+## Model
+Random Forest classifier predicting whether a campaign row generated conversions.
+
+## ROC-AUC
+0.934
+
+## Classification Report
+              precision    recall  f1-score   support
+
+           0       0.74      0.81      0.77       312
+           1       0.93      0.90      0.92       938
+
+    accuracy                           0.88      1250
+   macro avg       0.84      0.86      0.84      1250
+weighted avg       0.88      0.88      0.88      1250
