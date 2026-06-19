@@ -4,8 +4,6 @@ scikit-learn
 streamlit
 matplotlib
 plotly
-# Optional for GenAI:
-# langchain
-# langchain-community
-# langchain-google-genai
-# faiss-cpugoogle-genai
+google-genai
+
+
