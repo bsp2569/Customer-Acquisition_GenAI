@@ -8,4 +8,4 @@ plotly
 # langchain
 # langchain-community
 # langchain-google-genai
-# faiss-cpu
+# faiss-cpugoogle-genai

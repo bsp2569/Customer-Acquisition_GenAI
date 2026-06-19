@@ -1,7 +1,8 @@
-
 import pandas as pd
 import numpy as np
 import streamlit as st
+import os
+from genai_insights import answer_campaign_question
 from pathlib import Path
 
 st.set_page_config(page_title="Customer Acquisition & Marketing ROI", layout="wide")
@@ -83,13 +84,36 @@ seg["CPA"] = seg["spend"] / seg["conversions"].replace(0, np.nan)
 seg["ROAS"] = seg["revenue"] / seg["spend"].replace(0, np.nan)
 st.dataframe(seg.sort_values("ROAS", ascending=False).fillna(0), use_container_width=True)
 
-st.header("GenAI Insights Assistant Placeholder")
-st.info("Add LangChain + FAISS + Gemini/OpenAI here after creating an API key. For now, use reports/campaign_insights_report.txt as the knowledge base.")
-question = st.text_input("Ask a business question")
+st.header("GenAI Campaign Insights Assistant")
+
+st.info(
+    "Ask questions about campaign performance, ROAS, CPA, funnel performance, "
+    "audience quality, and budget optimization. The assistant uses the generated "
+    "campaign insights report as its knowledge base."
+)
+
+# For Streamlit Cloud deployment
+try:
+    if "GOOGLE_API_KEY" in st.secrets:
+        os.environ["GOOGLE_API_KEY"] = st.secrets["GOOGLE_API_KEY"]
+except Exception:
+    pass
+
+question = st.text_input(
+    "Ask a business question",
+    placeholder="Example: Which campaign should be optimized?"
+)
+
 if question:
-    report_path = Path("reports/campaign_insights_report.txt")
-    if report_path.exists():
-        st.write("Sample source-backed answer from prepared insights:")
-        st.text(report_path.read_text()[:1200])
-    else:
-        st.warning("Run notebooks/02_campaign_eda_kpis.py first to generate the report.")
+    with st.spinner("Generating campaign insight..."):
+        answer = answer_campaign_question(question)
+
+    st.write("### AI-generated insight")
+    st.write(answer)
+
+    with st.expander("View knowledge base used"):
+        report_path = Path("reports/campaign_insights_report.txt")
+        if report_path.exists():
+            st.text(report_path.read_text()[:2500])
+        else:
+            st.warning("Campaign insights report not found.")

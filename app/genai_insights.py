@@ -1,27 +1,53 @@
+import os
+from pathlib import Path
+from google import genai
 
+
+def answer_campaign_question(question: str) -> str:
+    """
+    Answers business questions using the campaign insights report as context.
+    This is a Gemini-powered grounded Q&A layer.
+    """
+
+    api_key = os.getenv("GOOGLE_API_KEY")
+
+    if not api_key:
+        return (
+            "GOOGLE_API_KEY is not set. Please add your Gemini API key as an "
+            "environment variable locally or in Streamlit secrets after deployment."
+        )
+
+    report_path = Path("reports/campaign_insights_report.txt")
+
+    if not report_path.exists():
+        return (
+            "Campaign insights report not found. Please run "
+            "`python notebooks/02_campaign_eda_kpis.py` first."
+        )
+
+    report_text = report_path.read_text()
+
+    prompt = f"""
+You are a marketing analytics and customer acquisition assistant.
+
+Use only the campaign insights report below to answer the user's question.
+Do not make up numbers that are not present in the report.
+Give concise, business-friendly answers with clear recommendations.
+
+Campaign Insights Report:
+{report_text}
+
+User Question:
+{question}
+
+Answer:
 """
-Optional GenAI/RAG layer.
 
-To implement:
-1. Create reports/campaign_insights_report.txt from 02_campaign_eda_kpis.py
-2. Use LangChain text splitter to chunk it
-3. Use embeddings
-4. Store chunks in FAISS
-5. Retrieve relevant chunks for a user question
-6. Send retrieved context to Gemini/OpenAI
+    client = genai.Client(api_key=api_key)
 
-Keep API keys in environment variables or Streamlit secrets.
-Never hardcode keys.
-"""
-
-# Pseudocode:
-# from langchain_community.vectorstores import FAISS
-# from langchain.text_splitter import RecursiveCharacterTextSplitter
-# from langchain_google_genai import GoogleGenerativeAIEmbeddings, ChatGoogleGenerativeAI
-# from langchain.chains.question_answering import load_qa_chain
-
-def answer_question_placeholder(question: str) -> str:
-    return (
-        "This is a placeholder. Connect LangChain + FAISS + Gemini/OpenAI "
-        "to answer questions using reports/campaign_insights_report.txt."
+    response = client.models.generate_content(
+        model="gemini-2.5-flash",
+        contents=prompt
     )
+
+    return response.text
